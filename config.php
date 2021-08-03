@@ -35,6 +35,7 @@
      * @param string $default
      * 
      * @return string|array
+     *
      * @throw Exception
      */
     function getConfig($optionName, $default = '') {
