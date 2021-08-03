@@ -34,7 +34,7 @@
      * @param string $optionName
      * @param string $default
      * 
-     * @return string|array
+     * @return mixed
      *
      * @throw Exception
      */
