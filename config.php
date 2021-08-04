@@ -1,33 +1,36 @@
 <?php
-    include "settings.php"
+    include "settings.php";
+
     /**
      * Get config option value 
      * 
      * @param string $optionName
-     * @param string $default
+     * @param mixed $default
      * 
-     * @return string|array|mixed
+     * @return mixed
+     *
      * @throw Exception
      */
     function getConfig($optionName, $default = '') {
+        $countArgs = func_num_args();
         $keys = explode(".", $optionName);
         $optionValue = getSettings();
         
         try{
             foreach ($keys as $key){
-            if (isset($optionValue[$key]) === true){
-                $optionValue = $optionValue[$key];
-            }elseif (empty($default) === false){
-                return $default;
-            }else{
-                throw new Exception("Option not installed");
-            }
-        };
+                if (array_key_exists($key, (is_array($optionValue) === true) ? $optionValue : []) === true) {
+                    $optionValue = $optionValue[$key];
+                }elseif ($countArgs === 2){
+                    return $default;
+                }else{
+                    throw new Exception("Option not installed");
+                }
+            };
         
-        return  $optionValue;
+            return  $optionValue;
         }catch (Exception $e) {
-            echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+            return $e;
         }
     }
-  
-echo (getConfig("db.hosts"));
+ 
+    echo (getConfig("db.users"));
