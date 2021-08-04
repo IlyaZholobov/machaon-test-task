@@ -1,40 +1,12 @@
 <?php
-    /**
-     * Get config
-     * 
-     * @return array
-     */
-    function getSettings() {
-        return [
-            "site_name" => "My site",
-            "site_url" => "http://mysite.ru",
-            "assets" => [
-                "version" => 2,
-                "minify" => true,
-            ],
-            "db" => [
-                "user" => "admin",
-                "password" => "ifghigh8y8rt347ghi",
-                "name" => "my_database"
-            ],
-            "app" => [
-                "services" => [
-                    "resizer" => [
-                        "prefer_format" => "webp",
-                        "fallback_format" => "jpeg"
-                    ]
-                ]
-            ]
-        ];
-    }
-        
+    include "settings.php"
     /**
      * Get config option value 
      * 
      * @param string $optionName
      * @param string $default
      * 
-     * @return string|array
+     * @return string|array|mixed
      * @throw Exception
      */
     function getConfig($optionName, $default = '') {
